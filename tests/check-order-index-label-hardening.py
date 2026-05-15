@@ -14,11 +14,13 @@ for label, needle in checks.items():
     if needle not in view:
         raise SystemExit(f"missing {label}")
 
-for forbidden in [
-    "'attribute' => 'business_location_name',\n                        \"format\" => \"raw\"",
-    "'label' => 'Payment',\n                        \"format\" => \"raw\"",
+for marker in [
+    "'attribute' => 'business_location_name'",
+    "'label' => 'Payment'",
 ]:
-    if forbidden in view:
+    before, after = view.split(marker, 1)
+    column_window = before[-160:] + marker + after[:160]
+    if '"format" => "raw"' in column_window or "'format' => 'raw'" in column_window:
         raise SystemExit("raw format still present on label field")
 
 print("Order index label hardening guard passed.")
