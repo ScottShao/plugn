@@ -116,7 +116,6 @@ white-space: nowrap !important;
                     'country_name',
                     [
                         'attribute' => 'business_location_name',
-                        "format" => "raw",
                         "value" => function($model) {
                             return $model->business_location_name ? $model->business_location_name : '';
                         }
@@ -163,7 +162,6 @@ white-space: nowrap !important;
                     ],
                     [
                         'label' => 'Payment',
-                        "format" => "raw",
                         "value" => function($data) {
                             if($data->paymentMethod)
                                 return $data->paymentMethod->payment_method_name;
