@@ -60,7 +60,6 @@ $this->registerJs($js);
                 ['class' => 'yii\grid\SerialColumn'],
                 //'bank.bank_name',
                 [
-                    "format" => "raw",
                     "attribute" => "bank_name",
                     "value" => function($model) {
                         return $model->bank->bank_name;
