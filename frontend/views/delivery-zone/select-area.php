@@ -8,6 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Delivery Zone';
 // $this->params['breadcrumbs'][] = $this->title;
 $this->params['restaurant_uuid'] = $storeUuid;
+$safeSelectedCountry = Html::encode($selectedCountry);
 
 ?>
 <div>
@@ -15,13 +16,13 @@ $this->params['restaurant_uuid'] = $storeUuid;
     <div class="card">
 
       <div class="card-header">
-        <h4>Would you like to select specific areas or you want to deliver all over <?= $selectedCountry ?> </h4>
+        <h4>Would you like to select specific areas or you want to deliver all over <?= $safeSelectedCountry ?> </h4>
       </div>
 
       <div class="card-content">
       <div class="card-body">
 
-        <?= Html::a('Deliver all over '. $selectedCountry ,
+        <?= Html::a('Deliver all over '. $safeSelectedCountry ,
           ['deliver-all-areas', 'storeUuid' => $storeUuid, 'deliveryZoneId' => $deliveryZoneId],
           ['class' => 'btn btn-outline-primary', 'style' => 'margin-bottom : 15px']);
         ?>
