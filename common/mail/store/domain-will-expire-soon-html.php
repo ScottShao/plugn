@@ -6,6 +6,9 @@ use yii\helpers\Html;
 /* @var $store common\models\Restaurant */
 /* @var $subscription common\models\StoreDomainSubscription */
 
+$safeSubscriptionDomain = Html::encode($subscription->domain);
+$safeStoreName = Html::encode($store->name);
+
 ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -220,7 +223,7 @@ use yii\helpers\Html;
                                                                 <div
                                                                     style="font-family:Helvetica;font-size:21px;font-weight:900;line-height:24px;text-align:left;color:#ffffff;"
                                                                 >
-                                                                    <?= $subscription->domain ?> Expiring
+                                                                    <?= $safeSubscriptionDomain ?> Expiring
                                                                 </div>
 
                                                             </td>
@@ -313,7 +316,7 @@ use yii\helpers\Html;
                                                     <div
                                                         style="font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#000000;"
                                                     >
-                                                        <?= $subscription->domain ?> for your store <?= $store->name ?> will expire in 14 days.
+                                                        <?= $safeSubscriptionDomain ?> for your store <?= $safeStoreName ?> will expire in 14 days.
                                                     </div>
 
                                                 </td>
