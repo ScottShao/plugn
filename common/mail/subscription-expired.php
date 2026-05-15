@@ -12,6 +12,9 @@ use common\models\AgentAssignment;
 
 
 $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $store->restaurant_uuid . '&selectedPlanId=' . $subscription->plan->plan_id;
+$safeAgentName = Html::encode($agent_name);
+$safeStoreName = Html::encode($store->name);
+$safeTitle = Html::encode($store->name . ' has been downgraded to our free plan');
 
 ?>
 
@@ -20,7 +23,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
       <head>
         <title>
-          <?= $store->name ?> has been downgraded to our free plan
+          <?= $safeTitle ?>
         </title>
         <!--[if !mso]><!-- -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -308,7 +311,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
       <div
          style="font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;text-align:left;color:#000000;"
       >
-        Hello <?= $agent_name ?>,
+        Hello <?= $safeAgentName ?>,
       </div>
 
               </td>
@@ -322,7 +325,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
       <div
          style="font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;text-align:left;color:#000000;"
       >
-        <?= $store->name ?> has been downgraded to our free plan
+        <?= $safeStoreName ?> has been downgraded to our free plan
       </div>
 
               </td>
