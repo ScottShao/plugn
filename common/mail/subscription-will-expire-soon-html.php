@@ -6,13 +6,18 @@ use yii\helpers\Html;
 /* @var $model common\models\Restaurant */
 
 $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $store->restaurant_uuid . '&selectedPlanId=' . $subscription->plan->plan_id;
+$safeAgentName = Html::encode($agent_name);
+$safePlan = Html::encode($plan);
+$safeStoreName = Html::encode($store->name);
+$safeTitle = Html::encode($plan . ' for ' . $store->name . ' will expire in 5 days');
+$safeExtendPlanLabel = Html::encode('Extend my ' . $plan);
 
 ?>
   <!doctype html>
   <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
       <title>
-        <?= $plan ?> for <?= $store->name ?> will expire in 5 days
+        <?= $safeTitle ?>
       </title>
       <!--[if !mso]><!-- -->
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -300,7 +305,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
     <div
        style="font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;text-align:left;color:#000000;"
     >
-      Hello <?= $agent_name ?>,
+      Hello <?= $safeAgentName ?>,
     </div>
 
             </td>
@@ -314,7 +319,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
     <div
        style="font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:18px;font-weight:bold;line-height:24px;text-align:left;color:#000000;"
     >
-      <?= $plan ?> for your store <?= $store->name ?> will expire in 5 days.
+      <?= $safePlan ?> for your store <?= $safeStoreName ?> will expire in 5 days.
     </div>
 
             </td>
@@ -348,7 +353,7 @@ $extendPlanUrl = Yii::$app->params['frontendUrl'] . '/site/confirm-plan?id=' . $
         >
 
           <?=
-            Html::a('Extend my ' . $plan, $extendPlanUrl , ['style' => 'background:#2B546A;color:#ffffff;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;line-height:120%;Margin:0;text-decoration:none;text-transform:none;' ,'target' => '_blank'])
+            Html::a($safeExtendPlanLabel, $extendPlanUrl , ['style' => 'background:#2B546A;color:#ffffff;font-family:Proxima Nova, Arial, Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;line-height:120%;Margin:0;text-decoration:none;text-transform:none;' ,'target' => '_blank'])
           ?>
 
         </td>
