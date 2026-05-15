@@ -83,9 +83,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     }
                                 //$data->queue->queue_status .
-                                    $name = $data->name . ' ' . '&nbsp;&nbsp;' . $icon;
+                                    $name = Html::encode($data->name) . ' ' . '&nbsp;&nbsp;' . $icon;
                                 } else {
-                                    $name = $data->name;
+                                    $name = Html::encode($data->name);
                                 }
 
                                 if($data->is_deleted)
@@ -108,7 +108,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => "URL",
                             'format' => 'raw',
                             'value' => function ($data) {
-                                return '<a target="_blank" href="'. $data->restaurant_domain .'">'. $data->restaurant_domain .'</a>';
+                                $restaurantDomain = ltrim((string) $data->restaurant_domain, '/');
+
+                                if (!preg_match('/^https?:\/\//i', $restaurantDomain)) {
+                                    $restaurantDomain = 'https://' . $restaurantDomain;
+                                }
+
+                                return Html::a(Html::encode((string) $data->restaurant_domain), $restaurantDomain, [
+                                    'target' => '_blank',
+                                    'rel' => 'noopener noreferrer',
+                                ]);
                             }
                         ],
 
